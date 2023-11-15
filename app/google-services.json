@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "449915590300",
+    "project_id": "edeaf-d45f3",
+    "storage_bucket": "edeaf-d45f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449915590300:android:ee1308f6dd694ada0a7f59",
+        "android_client_info": {
+          "package_name": "com.example.edeaf"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRaUJ77wOF2HswhygSxSnwopqtxMOyOC8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

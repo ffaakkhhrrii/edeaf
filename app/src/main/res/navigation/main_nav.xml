@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.edeaf.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_liveTranslationStudent"
+            app:destination="@id/liveTranslationStudent" />
+        <action
+            android:id="@+id/action_homeFragment_to_liveTranslationTeacher"
+            app:destination="@id/liveTranslationTeacher" />
+        <action
+            android:id="@+id/action_homeFragment_to_dictionaryPage"
+            app:destination="@id/dictionaryPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/liveTranslationTeacher"
+        android:name="com.example.edeaf.LiveTranslationTeacher"
+        android:label="fragment_live_translation_teacher"
+        tools:layout="@layout/fragment_live_translation_teacher" >
+        <action
+            android:id="@+id/action_liveTranslationTeacher_to_liveTeacherRoom"
+            app:destination="@id/liveTeacherRoom" />
+    </fragment>
+    <fragment
+        android:id="@+id/liveTranslationStudent"
+        android:name="com.example.edeaf.LiveTranslationStudent"
+        android:label="fragment_live_translation_student"
+        tools:layout="@layout/fragment_live_translation_student" >
+        <action
+            android:id="@+id/action_liveTranslationStudent_to_liveStudentRoom"
+            app:destination="@id/liveStudentRoom" />
+        <action
+            android:id="@+id/action_liveTranslationStudent_to_liveStudentHistory"
+            app:destination="@id/liveStudentHistory" />
+    </fragment>
+    <fragment
+        android:id="@+id/liveTeacherRoom"
+        android:name="com.example.edeaf.LiveTeacherRoom"
+        android:label="fragment_live_teacher_room"
+        tools:layout="@layout/fragment_live_teacher_room" >
+        <argument
+            android:name="liveId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_liveTeacherRoom_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/liveStudentRoom"
+        android:name="com.example.edeaf.LiveStudentRoom"
+        android:label="fragment_live_student_room"
+        tools:layout="@layout/fragment_live_student_room" >
+        <argument
+            android:name="liveId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_liveStudentRoom_to_liveTranslationStudent"
+            app:destination="@id/liveTranslationStudent" />
+        <argument
+            android:name="participantId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/liveStudentHistory"
+        android:name="com.example.edeaf.LiveStudentHistory"
+        android:label="fragment_live_student_history"
+        tools:layout="@layout/fragment_live_student_history" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="historyText"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/userProfile"
+        android:name="com.example.edeaf.UserProfile"
+        android:label="fragment_user_profile"
+        tools:layout="@layout/fragment_user_profile" />
+    <fragment
+        android:id="@+id/dictionaryPage"
+        android:name="com.example.edeaf.DictionaryPage"
+        android:label="fragment_dictionary_page"
+        tools:layout="@layout/fragment_dictionary_page" >
+        <argument
+            android:name="jenis"
+            app:argType="string" />
+    </fragment>
+</navigation>

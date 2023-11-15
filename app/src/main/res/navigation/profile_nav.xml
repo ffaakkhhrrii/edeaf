@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_nav"
+    app:startDestination="@id/userProfilePage">
+
+    <fragment
+        android:id="@+id/userProfilePage"
+        android:name="com.example.edeaf.UserProfilePage"
+        android:label="fragment_user_profile_page"
+        tools:layout="@layout/fragment_user_profile_page" >
+        <action
+            android:id="@+id/action_userProfilePage_to_setProfilePage"
+            app:destination="@id/setProfilePage" />
+        <action
+            android:id="@+id/action_userProfilePage_to_changePasswordPage"
+            app:destination="@id/changePasswordPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/setProfilePage"
+        android:name="com.example.edeaf.SetProfilePage"
+        android:label="fragment_set_profile_page"
+        tools:layout="@layout/fragment_set_profile_page" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="uid"
+            app:argType="string" />
+        <argument
+            android:name="imageUri"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_setProfilePage_to_userProfilePage"
+            app:destination="@id/userProfilePage" />
+        <argument
+            android:name="password"
+            app:argType="string" />
+        <argument
+            android:name="role"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordPage"
+        android:name="com.example.edeaf.ChangePasswordPage"
+        android:label="fragment_change_password_page"
+        tools:layout="@layout/fragment_change_password_page" />
+</navigation>
