@@ -1,4 +1,4 @@
-package com.example.edeaf
+package com.example.edeaf.login
 
 import android.content.Context
 import android.os.Bundle
@@ -8,8 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.example.edeaf.R
 import com.example.edeaf.databinding.FragmentLoginPageBinding
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginPage : Fragment() {
 
@@ -17,6 +22,7 @@ class LoginPage : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,12 +38,18 @@ class LoginPage : Fragment() {
             }
 
             btnLogin.setOnClickListener {
-                login()
+                CoroutineScope(Dispatchers.IO).launch {
+                    login()
+                }
             }
         }
         return binding.root
     }
-    private fun login() {
+
+    private suspend fun login() {
+        withContext(Dispatchers.Main) {
+            binding.btnLogin.isEnabled = false // Disable the button to prevent double-click
+        }
         binding.apply {
             val email = edtEmailLogin.text.toString()
             val password = edtEmailPassword.text.toString()
@@ -46,7 +58,7 @@ class LoginPage : Fragment() {
                 firebaseAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            // Simpan kredensial jika opsi "Ingat Saya" dicentang
+                            // Save credentials if "Remember Me" option is checked
                             if (checkBoxLogin.isChecked) {
                                 saveCredentials(email, password)
                             }
@@ -62,18 +74,23 @@ class LoginPage : Fragment() {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
+                        binding.btnLogin.isEnabled = true // Re-enable the button after login attempt
                     }
-            } else if (email.isEmpty()) {
-                edtEmailLogin.error = "Write Email"
-            } else if (password.isEmpty()) {
-                edtEmailPassword.error = "Write Password"
             } else {
-                Toast.makeText(requireContext(), "Data harus diisi", Toast.LENGTH_SHORT).show()
+                withContext(Dispatchers.Main) {
+                    if (email.isEmpty()) {
+                        edtEmailLogin.error = "Write Email"
+                    } else if (password.isEmpty()) {
+                        edtEmailPassword.error = "Write Password"
+                    } else {
+                        Toast.makeText(requireContext(), "Data must be filled in", Toast.LENGTH_SHORT).show()
+                    }
+                    binding.btnLogin.isEnabled = true // Re-enable the button if input is invalid
+                }
             }
         }
     }
 
-    // Saat pengguna berhasil login, simpan kredensial menggunakan SharedPreferences
     private fun saveCredentials(email: String, password: String) {
         val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -82,32 +99,30 @@ class LoginPage : Fragment() {
         editor.apply()
     }
 
-    // Saat aplikasi dimulai (misalnya dalam onCreate() di MainActivity), periksa apakah kredensial ada
     private fun checkRememberMe() {
         val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val savedUsername = sharedPreferences.getString("username", null)
         val savedPassword = sharedPreferences.getString("password", null)
 
-        if (savedUsername != null && savedPassword != null) {
-            // Lakukan otentikasi otomatis menggunakan savedUsername dan savedPassword
-            firebaseAuth.signInWithEmailAndPassword(savedUsername, savedPassword)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        // Redirect ke halaman beranda atau halaman setelah login
-                        val action = LoginPageDirections.actionLoginPageToHomePage(
-                            savedUsername, savedPassword
-                        )
-                        findNavController().navigate(action)
-                    } else {
-                        // Gagal otentikasi otomatis, mungkin kredensial telah berubah
-                        // Lakukan tindakan sesuai kebutuhan aplikasi Anda
+        CoroutineScope(Dispatchers.IO).launch {
+            if (savedUsername != null && savedPassword != null) {
+                firebaseAuth.signInWithEmailAndPassword(savedUsername, savedPassword)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val action = LoginPageDirections.actionLoginPageToHomePage(
+                                savedUsername, savedPassword
+                            )
+                            findNavController().navigate(action)
+                        } else {
+                            // Automatic authentication failed, handle as needed
+                        }
                     }
-                }
+            }
         }
     }
 
-// Pemanggilan checkRememberMe() dapat ditempatkan dalam onCreate() di MainActivity
-
-
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

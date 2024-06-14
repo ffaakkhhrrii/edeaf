@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserProfilePage"
+    tools:context=".profile.FragmentUserProfile"
     android:background="#EFF9FF">
 
     <LinearLayout
@@ -26,7 +26,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Profil"
+                    android:text="Profile"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/poppins_semi_bold"
                     android:textColor="#000000"
@@ -87,7 +87,7 @@
             android:layout_marginHorizontal="23dp"
             android:layout_marginTop="40dp"
             android:paddingVertical="5dp"
-            android:text="Umum"
+            android:text="General"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#000000"/>
@@ -133,7 +133,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingVertical="1dp"
-                            android:text="Pengaturan Profil"
+                            android:text="Setting Profile"
                             android:gravity="center_vertical"
                             android:textColor="#FFFFFF"
                             android:textSize="18sp"/>
@@ -142,7 +142,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Perbarui profil kamu"
+                            android:text="Update your profile"
                             android:textColor="#FFFFFF"
                             android:textSize="12sp"/>
 
@@ -203,7 +203,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingVertical="1dp"
-                            android:text="Keamanan"
+                            android:text="Security"
                             android:gravity="center_vertical"
                             android:textColor="#FFFFFF"
                             android:textSize="18sp"/>
@@ -212,7 +212,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Ganti kata sandi"
+                            android:text="Change Password"
                             android:textColor="#FFFFFF"
                             android:textSize="12sp"/>
 
@@ -273,7 +273,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingVertical="1dp"
-                            android:text="Lapor Kendala"
+                            android:text="Report Problems"
                             android:gravity="center_vertical"
                             android:textColor="#FFFFFF"
                             android:textSize="18sp"/>
@@ -282,7 +282,7 @@
                             android:fontFamily="@font/poppins_regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Laporkan kendala yang terjadi"
+                            android:text="Report any problems that occur"
                             android:textColor="#FFFFFF"
                             android:textSize="12sp"/>
 

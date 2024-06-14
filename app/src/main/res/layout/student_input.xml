@@ -25,6 +25,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/student_ask_input"
                 android:padding="10dp"
+                
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginTop="15dp"/>
 
@@ -35,7 +36,7 @@
                 android:layout_margin="25dp"
                 android:background="@drawable/button_login"
                 android:fontFamily="@font/poppins_semi_bold"
-                android:text="Tanya"
+                android:text="Send"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp" />

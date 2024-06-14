@@ -4,11 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.edeaf.LiveTranslationStudent
-import com.example.edeaf.LiveTranslationStudentDirections
 import com.example.edeaf.databinding.ListLiveHistoryBinding
+import com.example.edeaf.livetrans.LiveTranslationStudentDirections
 import com.example.edeaf.model.HistoryResponse
-import com.example.edeaf.model.LiveTrans
 
 class StudentHistoryAdapter(private val historyList: ArrayList<HistoryResponse>):RecyclerView.Adapter<StudentHistoryAdapter.ViewHolder>() {
     class ViewHolder(val binding:ListLiveHistoryBinding):RecyclerView.ViewHolder(binding.root) {

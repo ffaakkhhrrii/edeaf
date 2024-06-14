@@ -1,169 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LoginPage">
+    tools:context=".login.LoginPage">
 
-    <!-- Auto layout, variables, and unit scale are not yet supported -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="41dp"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:gravity="top"
-        android:text="Selamat Datang!"
-        android:textColor="@color/black"
-        android:textSize="32sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:fontFamily="@font/poppins_regular"
-        android:gravity="top"
-        android:text="Masuk untuk lanjut"
-        android:textColor="@color/black"
-        android:textSize="18.67sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="61dp"
-        android:fontFamily="@font/poppins_regular"
-        android:gravity="top"
-        android:text="Email"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
-
-    <EditText
-        android:id="@+id/edtEmailLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:autofillHints=""
-        android:fontFamily="@font/poppins_regular"
-        android:background="@drawable/custom_input"
-        android:hint="Masukkan Email"
-        android:inputType="textEmailAddress"
-        android:padding="15dp"
-        android:textSize="16sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/poppins_regular"
-        android:gravity="top"
-        android:text="Password"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
-
-    <EditText
-        android:id="@+id/edtEmailPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:fontFamily="@font/poppins_regular"
-        android:autofillHints=""
-        android:background="@drawable/custom_input"
-        android:hint="Masukkan Password"
-        android:inputType="textPassword"
-        android:padding="15dp"
-        android:textSize="16sp" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp">
-
-        <CheckBox
-            android:id="@+id/checkBoxLogin"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:buttonTint="@color/black"
-            android:layout_centerVertical="true"/>
-
-        <TextView
-            android:id="@+id/keepsign"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Ingat saya"
-            android:textColor="@color/black"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/checkBoxLogin"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/forgotpw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Lupa password?"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:textColor="@color/highlightText"
-            android:textSize="15sp"/>
-
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:background="@drawable/button_login"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:text="Masuk"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:textSize="16sp" />
-
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="50dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:text="Belum punya akun?"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="27dp"
+                android:layout_marginTop="41dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="top"
+                android:text="Welcome!"
                 android:textColor="@color/black"
-                android:textSize="15sp"/>
+                android:textSize="32sp" />
 
             <TextView
-                android:id="@+id/signUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="27dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Daftar"
-                android:layout_marginStart="5dp"
-                android:textColor="@color/highlightText"
-                android:textSize="15sp" />
+                android:gravity="top"
+                android:text="Login to continue"
+                android:textColor="@color/black"
+                android:textSize="18.67sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="27dp"
+                android:layout_marginTop="61dp"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="top"
+                android:text="Email"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edtEmailLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:autofillHints=""
+                android:background="@drawable/custom_input"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Enter Email"
+                android:inputType="textEmailAddress"
+                android:padding="15dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="27dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="top"
+                android:text="Password"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edtEmailPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:autofillHints=""
+                android:background="@drawable/custom_input"
+                android:fontFamily="@font/poppins_regular"
+                android:hint="Enter Password"
+                android:inputType="textPassword"
+                android:padding="15dp"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp">
+
+                <CheckBox
+                    android:id="@+id/checkBoxLogin"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:buttonTint="@color/black" />
+
+                <TextView
+                    android:id="@+id/keepsign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/checkBoxLogin"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Remember me"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/forgotpw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Forgot password?"
+                    android:textColor="@color/highlightText"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp"
+                android:background="@drawable/button_login"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="Login"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="50dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Don't have an account?"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/signUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Sign Up"
+                        android:textColor="@color/highlightText"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
 
         </LinearLayout>
 
+    </ScrollView>
 
-    </RelativeLayout>
+
+    <!-- Auto layout, variables, and unit scale are not yet supported -->
 
 
-</LinearLayout>
+</RelativeLayout>

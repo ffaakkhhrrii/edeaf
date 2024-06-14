@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EFF9FF"
-    tools:context=".HomeFragment">
+    tools:context=".home.FragmentHome">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
                     android:gravity="center_vertical"
-                    android:text="Halo,"
+                    android:text="Hi,"
                     android:textColor="#C9BABD"
                     android:textSize="18sp" />
 
@@ -83,7 +83,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Penerjemah Langsung"
+                    android:text="Live Translation"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -111,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center_vertical"
-                android:text="Kamus Bahasa Isyarat"
+                android:text="Sign Language Dictionary"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -149,7 +149,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="10dp"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:text="Alfabet"
+                            android:text="Alphabet"
                             android:textColor="#EFF9FF"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -186,7 +186,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="10dp"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:text="Hari"
+                            android:text="Day"
                             android:textColor="#EFF9FF"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -230,7 +230,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="10dp"
                             android:fontFamily="@font/poppins_semi_bold"
-                            android:text="Bulan"
+                            android:text="Month"
                             android:textColor="#EFF9FF"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -266,7 +266,8 @@
                             android:layout_height="21dp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="10dp"
-                            android:text="Sehari-hari"
+                            android:text="Daily"
+                            android:fontFamily="@font/poppins_medium"
                             android:textColor="#EFF9FF"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -297,7 +298,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Komunitas"
+                    android:text="Community"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -327,7 +328,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="FITUR BARU"
+                            android:text="New Feature"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -337,7 +338,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="KOMUNITAS"
+                            android:text="Community"
                             android:textColor="#1B8EFD"
                             android:textSize="25sp"
                             android:textStyle="bold" />
@@ -353,7 +354,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="AKAN HADIR!!"
+                            android:text="Coming Soon!!"
                             android:textColor="#1B8EFD"
                             android:textSize="25sp"
                             android:textStyle="bold" />

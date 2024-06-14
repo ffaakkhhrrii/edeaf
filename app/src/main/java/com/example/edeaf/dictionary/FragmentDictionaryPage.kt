@@ -1,4 +1,4 @@
-package com.example.edeaf
+package com.example.edeaf.dictionary
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.edeaf.adapter.DictionaryAdapter
 import com.example.edeaf.databinding.FragmentDictionaryPageBinding
-import com.example.edeaf.databinding.FragmentHomeBinding
 import com.example.edeaf.model.DictionaryModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -19,7 +18,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class DictionaryPage : Fragment() {
+class FragmentDictionaryPage : Fragment() {
 
     private var _binding: FragmentDictionaryPageBinding? = null
     private val binding get() = _binding!!
@@ -28,7 +27,7 @@ class DictionaryPage : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseRef: DatabaseReference
 
-    private val args: DictionaryPageArgs by navArgs()
+    private val args: FragmentDictionaryPageArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,8 +44,8 @@ class DictionaryPage : Fragment() {
                 layoutManager = GridLayoutManager(requireContext(), 2)
             }
             back.setOnClickListener {
-                val fragmentManager = requireActivity().supportFragmentManager
-                fragmentManager.popBackStack()
+                // Di dalam Fragment 2
+                getActivity()?.getSupportFragmentManager()?.popBackStack()
             }
         }
         // Inflate the layout for this fragment

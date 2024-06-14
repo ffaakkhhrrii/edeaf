@@ -1,4 +1,4 @@
-package com.example.edeaf
+package com.example.edeaf.livetrans
 
 import android.app.Activity
 import android.content.Intent
@@ -10,15 +10,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.edeaf.R
 import com.example.edeaf.adapter.StudentQuestionAdapter
 import com.example.edeaf.databinding.FragmentLiveTeacherRoomBinding
-import com.example.edeaf.model.HistoryResponse
 import com.example.edeaf.model.LiveTrans
-import com.example.edeaf.model.Users
+import com.example.edeaf.model.Participant
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -40,7 +41,7 @@ class LiveTeacherRoom : Fragment() {
 
     private val args : LiveTeacherRoomArgs by navArgs()
 
-    private lateinit var historyList: ArrayList<HistoryResponse>
+    private lateinit var questionList: ArrayList<Participant>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +52,8 @@ class LiveTeacherRoom : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseRef = FirebaseDatabase.getInstance().getReference("LiveTrans")
 
-        historyList = arrayListOf()
+
+        questionList = arrayListOf()
         showQuestion()
         binding.rvAsk.apply {
             setHasFixedSize(true)
@@ -97,56 +99,59 @@ class LiveTeacherRoom : Fragment() {
     private fun showQuestion() {
         firebaseRef.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                historyList.clear()
+                questionList.clear()
                 if (snapshot.exists()){
                     for(historySnap: DataSnapshot in snapshot.children){
                         for (idParticip: DataSnapshot in historySnap.child("participantId").children){
-                                for (question: DataSnapshot in idParticip.child("questions").children){
-                                    if (args.liveId.contains(historySnap.child("liveId").value.toString())){
-                                        val history = historySnap.getValue(HistoryResponse::class.java)
-                                        historyList.add(history!!)
-                                    }
-                                }
+                            if (args.liveId.contains(historySnap.child("liveId").value.toString())){
+                                val history = idParticip.getValue(Participant::class.java)
+                                questionList.add(history!!)
+                            }
                         }
                     }
                 }
-                val rvAdapter = StudentQuestionAdapter(historyList)
+                val rvAdapter = StudentQuestionAdapter(questionList)
                 binding.rvAsk.adapter = rvAdapter
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Toast.makeText(context,error.message.toString(),Toast.LENGTH_SHORT).show()
             }
 
         })
     }
 
     private fun endRoom() {
-        context?.let {
-                context ->
-            MaterialAlertDialogBuilder(context)
-                .setTitle("Akhiri Ruangan")
-                .setMessage("Anda yakin ingin mengakhiri ruangan?")
-                .setPositiveButton("Akhiri"){
-                        _,_->
-                    var liveTrans : LiveTrans
-                    val currentTime = Date()
-                    val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-                    val formattedTime = dateFormat.format(currentTime)
+        context?.let { context ->
+            val dialogView: View = layoutInflater.inflate(R.layout.end_room, null)
 
-                    firebaseRef.child(args.liveId).child("endTime").setValue(formattedTime)
-                        .addOnCompleteListener {
-                            findNavController().navigate(R.id.action_liveTeacherRoom_to_homeFragment)
-                        }
-                        .addOnFailureListener{
+            val buttonEnd: Button = dialogView.findViewById(R.id.yesEnd)
+            val closeBtn: Button = dialogView.findViewById(R.id.cancelEnd)
 
-                        }
+            val dialog = MaterialAlertDialogBuilder(context)
+                .setView(dialogView)
+                .create()
 
-                }
-                .setNegativeButton("Batal"){
-                        _,_->
-                }
-                .show()
+            buttonEnd.setOnClickListener {
+                var liveTrans : LiveTrans
+                val currentTime = Date()
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                val formattedTime = dateFormat.format(currentTime)
+
+                firebaseRef.child(args.liveId).child("endTime").setValue(formattedTime)
+                    .addOnCompleteListener {
+                        findNavController().navigate(R.id.action_liveTeacherRoom_to_homeFragment)
+                        dialog.dismiss()
+                    }
+                    .addOnFailureListener{
+                        Toast.makeText(context,it.message.toString(),Toast.LENGTH_SHORT).show()
+                    }
+            }
+
+            closeBtn.setOnClickListener {
+                dialog.dismiss()
+            }
+            dialog.show()
         }
     }
 
@@ -165,7 +170,7 @@ class LiveTeacherRoom : Fragment() {
                     Toast.makeText(context,"Text Stored", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener{
-
+                    Toast.makeText(context,it.message.toString(),Toast.LENGTH_SHORT).show()
                 }
         }
     }

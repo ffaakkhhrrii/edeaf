@@ -1,143 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SignUp">
+    tools:context=".signup.FragmentSignUp">
 
-    <!-- Auto layout, variables, and unit scale are not yet supported -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="41dp"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:gravity="top"
-        android:text="Hai!"
-        android:textColor="@color/black"
-        android:textSize="32sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:fontFamily="@font/poppins_regular"
-        android:gravity="top"
-        android:text="Buat akun barumu"
-        android:textColor="@color/black"
-        android:textSize="18.67sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Name"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
-
-    <EditText
-        android:id="@+id/edtNameSignUp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="5dp"
-        android:autofillHints=""
-        android:background="@drawable/custom_input"
-        android:hint="Masukkan nama"
-        android:fontFamily="@font/poppins_regular"
-        android:inputType="textPersonName"
-        android:padding="15dp"
-        android:textSize="16sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Email"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
 
-    <EditText
-        android:id="@+id/edtEmailSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="5dp"
-        android:autofillHints=""
-        android:fontFamily="@font/poppins_regular"
-        android:background="@drawable/custom_input"
-        android:hint="Masukkan email"
-        android:inputType="textEmailAddress"
-        android:padding="15dp"
-        android:textSize="16sp" />
+        <!-- Auto layout, variables, and unit scale are not yet supported -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="41dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:gravity="top"
+            android:text="Hi!"
+            android:textColor="@color/black"
+            android:textSize="32sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Sebagai"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="top"
+            android:text="Create your new account?"
+            android:textColor="@color/black"
+            android:textSize="18.67sp" />
 
-    <Spinner
-        android:id="@+id/edtRoleSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/button_google_icon"
-        android:padding="15dp"
-        android:textSize="16sp"
-        android:spinnerMode="dropdown"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Password"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        <EditText
+            android:id="@+id/edtNameSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:autofillHints=""
+            android:background="@drawable/custom_input"
+            android:hint="Enter Name"
+            android:fontFamily="@font/poppins_regular"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:textSize="16sp" />
 
-    <EditText
-        android:id="@+id/edtPasswordSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="5dp"
-        android:autofillHints=""
-        android:background="@drawable/custom_input"
-        android:hint="Masukkan password"
-        android:inputType="textPassword"
-        android:fontFamily="@font/poppins_regular"
-        android:padding="15dp"
-        android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Email"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/btnSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:background="@drawable/button_login"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:text="Daftar"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
+        <EditText
+            android:id="@+id/edtEmailSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:autofillHints=""
+            android:fontFamily="@font/poppins_regular"
+            android:background="@drawable/custom_input"
+            android:hint="Enter Email"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textSize="16sp" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Role"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:id="@+id/edtRoleSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button_google_icon"
+            android:padding="15dp"
+            android:textSize="16sp"
+            android:spinnerMode="dropdown"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Password"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/edtPasswordSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:autofillHints=""
+            android:background="@drawable/custom_input"
+            android:hint="Enter Password"
+            android:inputType="textPassword"
+            android:fontFamily="@font/poppins_regular"
+            android:padding="15dp"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:background="@drawable/button_login"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="Sign Up"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</ScrollView>

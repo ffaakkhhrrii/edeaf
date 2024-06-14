@@ -1,4 +1,4 @@
-package com.example.edeaf
+package com.example.edeaf.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.example.edeaf.R
 import com.example.edeaf.databinding.FragmentHomeBinding
-import com.example.edeaf.databinding.FragmentHomePageBinding
 import com.example.edeaf.model.Users
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -17,8 +17,12 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class HomeFragment : Fragment() {
+class FragmentHome : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -58,28 +62,31 @@ class HomeFragment : Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
+                    Toast.makeText(context,error.message.toString(),Toast.LENGTH_SHORT).show()
+
                 }
 
             })
 
             btnLiveTrans.setOnClickListener {
-                moveValidatePage()
+                CoroutineScope(Dispatchers.IO).launch {
+                    moveValidatePage()
+                }
             }
             cvAlphabet.setOnClickListener {
-                val direct = HomeFragmentDirections.actionHomeFragmentToDictionaryPage("Alfabet")
+                val direct = FragmentHomeDirections.actionHomeFragmentToDictionaryPage("Alphabet")
                 findNavController().navigate(direct)
             }
             cvBulan.setOnClickListener {
-                val direct = HomeFragmentDirections.actionHomeFragmentToDictionaryPage("Bulan")
+                val direct = FragmentHomeDirections.actionHomeFragmentToDictionaryPage("Month")
                 findNavController().navigate(direct)
             }
             cvHari.setOnClickListener {
-                val direct = HomeFragmentDirections.actionHomeFragmentToDictionaryPage("Hari")
+                val direct = FragmentHomeDirections.actionHomeFragmentToDictionaryPage("Day")
                 findNavController().navigate(direct)
             }
             cvSehari.setOnClickListener {
-                val direct = HomeFragmentDirections.actionHomeFragmentToDictionaryPage("Sehari")
+                val direct = FragmentHomeDirections.actionHomeFragmentToDictionaryPage("Daily")
                 findNavController().navigate(direct)
             }
         }
@@ -87,20 +94,27 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun moveValidatePage() {
+    private suspend fun moveValidatePage() {
+        withContext(Dispatchers.Main) {
+            binding.btnLiveTrans.isEnabled = false // Disable the button to prevent double-click
+        }
         firebaseRef.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
                     val data = snapshot.getValue(Users::class.java)
-                    if (data?.role.toString() == "Guru"){
+                    if (data?.role.toString() == "Teacher"){
                         findNavController().navigate(R.id.action_homeFragment_to_liveTranslationTeacher)
-                    }else if(data?.role.toString() == "Murid"){
+                        binding.btnLiveTrans.isEnabled = true
+                    }else if(data?.role.toString() == "Student"){
                         findNavController().navigate(R.id.action_homeFragment_to_liveTranslationStudent)
+                        binding.btnLiveTrans.isEnabled = true
                     }else{
                         Toast.makeText(requireContext(),"Error",Toast.LENGTH_SHORT).show()
+                        binding.btnLiveTrans.isEnabled = true
                     }
                 }else{
                     Toast.makeText(requireContext(),"Error",Toast.LENGTH_SHORT).show()
+                    binding.btnLiveTrans.isEnabled = true
                 }
             }
 

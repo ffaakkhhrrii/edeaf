@@ -1,4 +1,4 @@
-package com.example.edeaf
+package com.example.edeaf.livetrans
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,20 +11,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.edeaf.adapter.StudentHistoryAdapter
 import com.example.edeaf.databinding.FragmentLiveTranslationStudentBinding
 import com.example.edeaf.model.HistoryResponse
-import com.example.edeaf.model.LiveTrans
 import com.example.edeaf.model.Participants
 import com.example.edeaf.model.Users
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.getValue
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Objects
 
 class LiveTranslationStudent : Fragment() {
 
@@ -51,7 +51,10 @@ class LiveTranslationStudent : Fragment() {
 
         binding.apply {
             btnJoinGroup.setOnClickListener {
-                validateCodeRoom()
+                CoroutineScope(Dispatchers.Main).launch {
+                    validateCodeRoom()
+
+                }
             }
 
         }
@@ -67,38 +70,55 @@ class LiveTranslationStudent : Fragment() {
         return binding.root
     }
 
-    private fun validateCodeRoom() {
+    private suspend fun validateCodeRoom() {
+        withContext(Dispatchers.Main) {
+            binding.btnJoinGroup.isEnabled = false
+        }
         val codeRoom = binding.edtCodeRoom.text.toString()
 
         firebaseRef.child("LiveTrans").addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (childSnapshot: DataSnapshot in snapshot.children) {
-                        if (codeRoom.contains(childSnapshot.child("codeRoom").value.toString())) {
-                            if (childSnapshot.child("endTime").value.toString() != null && childSnapshot.child(
-                                    "endTime"
-                                ).value.toString() != ""
-                            ) {
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Pertemuan Telah Berakhir",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            } else {
-                                updateLiveTrans(childSnapshot.child("liveId").value.toString())
-                            }
+                if (!snapshot.exists()) {
+                    showToast("No data available")
+                    binding.btnJoinGroup.isEnabled = true
+                    return
+                }
+
+                var codeValid = false
+                for (childSnapshot in snapshot.children) {
+                    val childCodeRoom =
+                        childSnapshot.child("codeRoom").value?.toString() ?: continue
+                    if (codeRoom == childCodeRoom) {
+                        codeValid = true
+                        val endTime = childSnapshot.child("endTime").value?.toString()
+                        if (endTime.isNullOrEmpty()) {
+                            val liveId = childSnapshot.child("liveId").value?.toString() ?: continue
+                            updateLiveTrans(liveId)
+                        } else {
+                            showToast("The Meeting Has Ended")
                         }
+                        break
                     }
                 }
+
+                if (!codeValid) {
+                    showToast("Code is invalid")
+                }
+                binding.btnJoinGroup.isEnabled = true
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(requireContext(), error.message, Toast.LENGTH_SHORT).show()
+                showToast(error.message)
+                binding.btnJoinGroup.isEnabled = true
             }
-
         })
 
     }
+
+    private fun showToast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+
 
     private fun showHistory() {
         firebaseRef.child("LiveTrans").addValueEventListener(object : ValueEventListener {
@@ -117,14 +137,15 @@ class LiveTranslationStudent : Fragment() {
                         }
                     }
                 } else {
-                    Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error to load history", Toast.LENGTH_SHORT).show()
                 }
                 val rvAdapter = StudentHistoryAdapter(historyList)
                 binding.rvHistoryStudent.adapter = rvAdapter
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(requireContext(), error.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
+
             }
 
         })
@@ -138,36 +159,41 @@ class LiveTranslationStudent : Fragment() {
         val formattedTime = dateFormat.format(currentTime)
         var name: String
 
-        val userRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid.toString())
+        val userRef: DatabaseReference =
+            FirebaseDatabase.getInstance().getReference("Users").child(uid.toString())
 
-            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
-                        val data = snapshot.getValue(Users::class.java)
-                        name = data?.name.toString()
+        userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val data = snapshot.getValue(Users::class.java)
+                    name = data?.name.toString()
 
-                        participant = Participants(participantsId, uid, name, formattedTime)
-                        firebaseRef.child("LiveTrans").child(id).child("participantId")
-                            .child(participantsId.toString()).setValue(participant)
-                            .addOnCompleteListener {
-                                val direct =
-                                    LiveTranslationStudentDirections.actionLiveTranslationStudentToLiveStudentRoom(
-                                        id,
-                                        participantsId.toString()
-                                    )
-                                findNavController().navigate(direct)
-                            }
-                            .addOnFailureListener {
-                                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                            }
-                    }
+                    participant = Participants(participantsId, uid, name, formattedTime)
+                    firebaseRef.child("LiveTrans").child(id).child("participantId")
+                        .child(participantsId.toString()).setValue(participant)
+                        .addOnCompleteListener {
+                            val direct =
+                                LiveTranslationStudentDirections.actionLiveTranslationStudentToLiveStudentRoom(
+                                    id,
+                                    participantsId.toString()
+                                )
+                            findNavController().navigate(direct)
+                            binding.btnJoinGroup.isEnabled = true
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(context, it.message.toString(), Toast.LENGTH_SHORT)
+                                .show()
+                            binding.btnJoinGroup.isEnabled = true
+                        }
                 }
+            }
 
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(context, error.message.toString(), Toast.LENGTH_SHORT).show()
+                binding.btnJoinGroup.isEnabled = true
+            }
 
-            })
+        })
 
     }
 }

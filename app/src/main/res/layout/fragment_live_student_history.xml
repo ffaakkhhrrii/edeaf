@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LiveStudentHistory"
+    tools:context=".livetrans.LiveStudentHistory"
     android:orientation="vertical"
     android:background="#E3E7E8">
 
@@ -31,7 +31,7 @@
             android:paddingVertical="12dp"
             android:gravity="center_horizontal"
             android:paddingRight="50dp"
-            android:text="Riwayat"
+            android:text="History"
             android:fontFamily="@font/poppins_semi_bold"
             android:textColor="#000000"
             android:textSize="20sp"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="41dp"
-        android:text="Nama Ruang"
+        android:text="Room Name"
         android:textSize="20sp"
         android:textColor="#000000"
         android:textStyle="bold"/>

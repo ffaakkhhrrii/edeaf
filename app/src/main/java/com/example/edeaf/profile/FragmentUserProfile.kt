@@ -1,4 +1,4 @@
-package com.example.edeaf
+package com.example.edeaf.profile
 
 import android.content.Context
 import android.content.Intent
@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.example.edeaf.LoginActivity
+import com.example.edeaf.R
 import com.example.edeaf.databinding.FragmentUserProfilePageBinding
 import com.example.edeaf.model.Users
 import com.google.firebase.auth.FirebaseAuth
@@ -21,7 +23,7 @@ import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 
 
-class UserProfilePage : Fragment() {
+class FragmentUserProfile : Fragment() {
 
     private var _binding: FragmentUserProfilePageBinding? = null
     private val binding get() = _binding!!
@@ -50,8 +52,14 @@ class UserProfilePage : Fragment() {
                         Picasso.get().load(data?.imageProfile).into(userPhotoProfile)
 
                         btnSetProfile.setOnClickListener {
-                            val action = UserProfilePageDirections.actionUserProfilePageToSetProfilePage(userName.text.toString(),
-                                userEmail.text.toString(),uid.toString(),data?.imageProfile.toString(),data?.password.toString(),data?.role.toString())
+                            val action = FragmentUserProfileDirections.actionUserProfilePageToSetProfilePage(
+                                    userName.text.toString(),
+                                    userEmail.text.toString(),
+                                    uid.toString(),
+                                    data?.imageProfile.toString(),
+                                    data?.password.toString(),
+                                    data?.role.toString()
+                                )
                             findNavController().navigate(action)
                         }
                     }
@@ -65,8 +73,9 @@ class UserProfilePage : Fragment() {
             logoutUser.setOnClickListener {
                 firebaseAuth.signOut()
                 clearCredentials()
-                val intent = Intent(requireContext(),LoginActivity::class.java)
+                val intent = Intent(requireContext(), LoginActivity::class.java)
                 startActivity(intent)
+                activity?.finish()
             }
 
             btnKeamanan.setOnClickListener {
@@ -74,7 +83,7 @@ class UserProfilePage : Fragment() {
             }
             btnReport.setOnClickListener {
             val emailIntent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto","edeaf.gmove@gmail.com",null))
-                startActivity(Intent.createChooser(emailIntent,"Berikan feedback"))
+                startActivity(Intent.createChooser(emailIntent,"Provide feedback"))
             }
         }
         // Inflate the layout for this fragment

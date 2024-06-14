@@ -7,19 +7,20 @@
 
     <fragment
         android:id="@+id/loginPage"
-        android:name="com.example.edeaf.LoginPage"
+        android:name="com.example.edeaf.login.LoginPage"
         android:label="fragment_login_page"
-        tools:layout="@layout/fragment_login_page" >
+        tools:layout="@layout/fragment_login_page">
         <action
             android:id="@+id/action_loginPage_to_signUp"
-            app:destination="@id/signUp" />
+            app:destination="@id/signUp"
+            />
         <action
             android:id="@+id/action_loginPage_to_homePage"
-            app:destination="@id/homePage" />
+            app:destination="@id/homePage"/>
     </fragment>
     <fragment
         android:id="@+id/signUp"
-        android:name="com.example.edeaf.SignUp"
+        android:name="com.example.edeaf.signup.FragmentSignUp"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
@@ -28,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/homePage"
-        android:name="com.example.edeaf.homePage"
+        android:name="com.example.edeaf.home.FragmentHomePage"
         android:label="fragment_home_page"
         tools:layout="@layout/fragment_home_page" >
         <argument

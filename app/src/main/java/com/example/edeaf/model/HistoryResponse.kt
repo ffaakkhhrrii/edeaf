@@ -16,9 +16,5 @@ data class Participant(
     val participantId: String? = null,
     val userId: String? = null,
     val name: String? = null,
-    val questions: Map<String, Question>? = null
-)
-
-data class Question(
-    val questionText: String? = null
+    val questions: List<String>? = null
 )

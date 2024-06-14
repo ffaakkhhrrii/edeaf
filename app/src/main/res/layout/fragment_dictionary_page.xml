@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DictionaryPage"
+    tools:context=".dictionary.FragmentDictionaryPage"
     android:orientation="vertical"
     android:background="#EFF9FF">
 
@@ -31,6 +31,7 @@
             android:layout_gravity="center_vertical"
             android:gravity="center_horizontal"
             android:paddingRight="30dp"
+            android:fontFamily="@font/poppins_medium"
             android:paddingVertical="12dp"
             android:textColor="#000000"
             android:textSize="20sp"

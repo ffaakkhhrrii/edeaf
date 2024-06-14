@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
@@ -10,11 +9,20 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="red">#FF5B5B</color>
+    <color name="green">#4CAF50</color>
+    <color name="end_color_component">#E3E7EA</color>
 
-    <attr format="color" name="card"/>
-    <attr format="color" name="bg"/>
-    <attr format="color" name="boldText"/>
-    <attr format="color" name="regularText"/>
-    <attr format="color" name="appbar"/>
-    <attr format="color" name="appbarAttribute"/>
+    <!-- Dark theme colors -->
+    <color name="darkPrimary">#1B8EFD</color>
+    <color name="darkPrimaryVariant">#3700B3</color>
+    <color name="darkOnPrimary">#FFFFFF</color>
+    <color name="darkSecondary">#03DAC6</color>
+    <color name="darkSecondaryVariant">#018786</color>
+    <color name="darkOnSecondary">#FFFFFF</color>
+    <color name="darkBackground">#121212</color>
+    <color name="darkSurface">#121212</color>
+    <color name="darkOnBackground">#FFFFFF</color>
+    <color name="darkOnSurface">#FFFFFF</color>
+    <color name="darkStatusBar">#1B1B1B</color>
 </resources>

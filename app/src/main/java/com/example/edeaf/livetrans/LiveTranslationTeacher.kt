@@ -1,4 +1,4 @@
-package com.example.edeaf
+package com.example.edeaf.livetrans
 
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
@@ -13,6 +13,10 @@ import com.example.edeaf.model.LiveTrans
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Date
 
 class LiveTranslationTeacher : Fragment() {
@@ -33,7 +37,9 @@ class LiveTranslationTeacher : Fragment() {
 
         binding.apply {
             btnCreateRoom.setOnClickListener{
-                createRoom()
+                CoroutineScope(Dispatchers.Main).launch {
+                    createRoom()
+                }
             }
 
             backFragment.setOnClickListener {
@@ -45,7 +51,10 @@ class LiveTranslationTeacher : Fragment() {
         return binding.root
     }
 
-    private fun createRoom() {
+    private suspend fun createRoom() {
+        withContext(Dispatchers.Main){
+            binding.btnCreateRoom.isEnabled = false
+        }
         val edtTitleRoom = binding.edtTitleRoom.text.toString()
 
         val uid = firebaseAuth.currentUser?.uid
@@ -60,16 +69,21 @@ class LiveTranslationTeacher : Fragment() {
         var liveTrans: LiveTrans
 
         if (edtTitleRoom.isEmpty()){
-            binding.edtTitleRoom.error = "Berikan Nama Pertemuan"
+            binding.edtTitleRoom.error = "Provide a Meeting Name"
+            binding.btnCreateRoom.isEnabled = true
         }else{
             liveTrans = LiveTrans(liveId,uid,edtTitleRoom,formattedTime,"", codeRoom = codeRoom, historyText = "", participantId = "")
             firebaseRef.child(liveId).setValue(liveTrans)
                 .addOnCompleteListener {
-                    val direct = LiveTranslationTeacherDirections.actionLiveTranslationTeacherToLiveTeacherRoom(liveId)
+                    val direct = LiveTranslationTeacherDirections.actionLiveTranslationTeacherToLiveTeacherRoom(
+                            liveId
+                        )
                     findNavController().navigate(direct)
+                    binding.btnCreateRoom.isEnabled = true
                 }
                 .addOnFailureListener{
                     Toast.makeText(context, "${it.message}}", Toast.LENGTH_SHORT).show()
+                    binding.btnCreateRoom.isEnabled = true
                 }
         }
 

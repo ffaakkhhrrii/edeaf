@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".SetProfilePage"
+    tools:context=".profile.FragmentSetProfile"
     android:background="#EFF9FF">
 
     <LinearLayout
@@ -31,7 +31,7 @@
             android:gravity="center_horizontal"
             android:paddingVertical="12dp"
             android:layout_marginStart="-40dp"
-            android:text="Pengaturan Profil"
+            android:text="Setting Profile"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="17dp"
-        android:text="Ubah Foto"
+        android:text="Change Photo"
         android:fontFamily="@font/poppins_medium"
         android:textStyle="bold"
         android:textSize="16dp"
@@ -67,7 +67,7 @@
         android:layout_marginHorizontal="22dp"
         android:padding="5dp"
         android:fontFamily="@font/poppins_semi_bold"
-        android:text="Tentang Anda"
+        android:text="About You"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000000"/>
@@ -78,7 +78,7 @@
         android:layout_marginHorizontal="22dp"
         android:layout_marginVertical="13dp"
         android:padding="5dp"
-        android:text="Nama"
+        android:text="Name"
         android:fontFamily="@font/poppins_medium"
         android:textSize="16sp"
         android:textColor="#000000"/>
@@ -90,7 +90,7 @@
         android:layout_marginHorizontal="20dp"
         android:autofillHints=""
         android:background="@drawable/input_set_profile"
-        android:hint="Masukkan Nama"
+        android:hint="Enter Name"
         android:fontFamily="@font/poppins_regular"
         android:inputType="textPersonName"
         android:padding="15dp"
@@ -114,7 +114,7 @@
         android:layout_marginHorizontal="20dp"
         android:autofillHints=""
         android:background="@drawable/input_set_profile"
-        android:hint="Masukkan Email"
+        android:hint="Enter Email"
         android:fontFamily="@font/poppins_regular"
         android:inputType="textEmailAddress"
         android:padding="15dp"
@@ -127,7 +127,7 @@
         android:layout_margin="25dp"
         android:background="@drawable/button_login"
         android:fontFamily="@font/poppins_semi_bold"
-        android:text="SIMPAN"
+        android:text="Save"
         android:textColor="@color/white"
         android:textSize="20sp" />
 

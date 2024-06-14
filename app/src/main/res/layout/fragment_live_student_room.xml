@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LiveStudentRoom"
+    tools:context=".livetrans.LiveStudentRoom"
     android:orientation="vertical"
     android:background="#EFF9FF">
 
@@ -22,7 +22,7 @@
             android:paddingVertical="12dp"
             android:gravity="center_horizontal"
             android:fontFamily="@font/poppins_semi_bold"
-            android:text="Penerjemah Langsung"
+            android:text="Live Translation"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold"/>
@@ -70,12 +70,12 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAsk"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        app:cornerRadius="20dp"
+        app:cornerRadius="10dp"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:text="Bertanya"
+        android:text="Ask"
         android:textAllCaps="false"
         android:paddingHorizontal="20dp"
         android:fontFamily="@font/poppins_medium"

@@ -1,4 +1,4 @@
-package com.example.edeaf
+package com.example.edeaf.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.edeaf.databinding.FragmentChangePasswordPageBinding
-import com.example.edeaf.databinding.FragmentUserProfilePageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class ChangePasswordPage : Fragment() {
+class FragmentChangePassword : Fragment() {
 
     private var _binding: FragmentChangePasswordPageBinding? = null
     private val binding get() = _binding!!
@@ -43,7 +42,7 @@ class ChangePasswordPage : Fragment() {
                         if (task.isSuccessful) {
                             firebaseRef.child(uid.toString()).child("password").setValue(newPassword)
                                 .addOnCompleteListener {
-                                    Toast.makeText(requireContext(),"Password berhasil diubah",Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(requireContext(),"Password changed successfully",Toast.LENGTH_SHORT).show()
                                     val fragmentManager = requireActivity().supportFragmentManager
                                     fragmentManager.popBackStack()
                                 }
@@ -51,8 +50,7 @@ class ChangePasswordPage : Fragment() {
                                     Toast.makeText(requireContext(),it.message.toString(),Toast.LENGTH_SHORT).show()
                                 }
                         } else {
-                            // Ada kesalahan saat memperbarui kata sandi
-                            Toast.makeText(context, "Gagal mengubah password", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Failed to change password", Toast.LENGTH_SHORT).show()
                         }
                     }
 

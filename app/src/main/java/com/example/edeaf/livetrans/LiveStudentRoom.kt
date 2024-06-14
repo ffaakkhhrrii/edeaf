@@ -1,8 +1,5 @@
-package com.example.edeaf
+package com.example.edeaf.livetrans
 
-import android.app.AlertDialog
-import android.graphics.Typeface
-import android.graphics.fonts.Font
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,22 +8,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.core.view.marginTop
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.edeaf.R
 import com.example.edeaf.databinding.FragmentLiveStudentRoomBinding
-import com.example.edeaf.databinding.FragmentLiveTranslationStudentBinding
-import com.example.edeaf.model.LiveTrans
-import com.example.edeaf.model.Users
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.GenericTypeIndicator
 import com.google.firebase.database.ValueEventListener
 
 class LiveStudentRoom : Fragment() {
@@ -81,14 +73,22 @@ class LiveStudentRoom : Fragment() {
                         .create()
 
                     buttonSubmit.setOnClickListener {
-                        val questionId = firebaseRef.push().key!!
-                        firebaseRef.child(args.liveId).child("participantId").child(args.participantId).child("questions").child(questionId).child("questionText").setValue(editTextInput.text.toString())
-                            .addOnCompleteListener {
+                        firebaseRef.child(args.liveId).child("participantId").child(args.participantId).child("questions").addListenerForSingleValueEvent(object : ValueEventListener {
+                            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                val currentList: ArrayList<String> = dataSnapshot.getValue(object : GenericTypeIndicator<ArrayList<String>>() {}) ?: ArrayList()
+
+                                val newData = editTextInput.text.toString()
+                                currentList.add(newData)
+
+                                // Mengirim kembali ArrayList yang telah diperbarui ke Firebase
+                                firebaseRef.child(args.liveId).child("participantId").child(args.participantId).child("questions").setValue(currentList)
                                 dialog.dismiss()
                             }
-                            .addOnFailureListener{
-                                Toast.makeText(context,"Error ${it.message}}", Toast.LENGTH_SHORT).show()
+
+                            override fun onCancelled(databaseError: DatabaseError) {
+                                Toast.makeText(requireContext(), databaseError.message,Toast.LENGTH_SHORT).show()
                             }
+                        })
                     }
 
                     closeBtn.setOnClickListener {

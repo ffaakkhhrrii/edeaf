@@ -1,4 +1,4 @@
-package com.example.edeaf
+package com.example.edeaf.livetrans
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.example.edeaf.databinding.FragmentLiveStudentHistoryBinding
-import com.example.edeaf.databinding.FragmentLiveTranslationStudentBinding
 
 class LiveStudentHistory : Fragment() {
 
