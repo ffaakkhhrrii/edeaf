@@ -16,6 +16,8 @@
             />
         <action
             android:id="@+id/action_loginPage_to_homePage"
+            app:popUpTo="@id/loginPage"
+            app:popUpToInclusive="true"
             app:destination="@id/homePage"/>
     </fragment>
     <fragment

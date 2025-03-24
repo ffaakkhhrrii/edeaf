@@ -34,6 +34,11 @@ class FragmentChangePassword : Fragment() {
         firebaseRef = FirebaseDatabase.getInstance().getReference("Users")
 
         binding.apply {
+
+            backFragment.setOnClickListener {
+                requireActivity().supportFragmentManager.popBackStack()
+            }
+
             btnSavePassword.setOnClickListener {
                 val newPassword = edtNewPassword.text.toString()
 

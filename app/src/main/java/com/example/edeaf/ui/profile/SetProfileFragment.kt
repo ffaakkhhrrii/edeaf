@@ -44,7 +44,7 @@ class SetProfileFragment : Fragment() {
                 updateData()
             }
             backFragment.setOnClickListener {
-                findNavController().navigate(R.id.action_setProfilePage_to_userProfilePage)
+                requireActivity().supportFragmentManager.popBackStack()
             }
 
         }

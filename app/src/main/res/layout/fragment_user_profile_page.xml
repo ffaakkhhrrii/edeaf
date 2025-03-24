@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".profile.FragmentUserProfile"
+    tools:context=".ui.profile.UserProfileFragment"
     android:background="#EFF9FF">
 
     <LinearLayout
@@ -32,13 +32,13 @@
                     android:textColor="#000000"
                     android:textStyle="bold"
                     android:textSize="20sp"
-                    android:paddingVertical="11dp"
-                    android:paddingHorizontal="20dp"/>
+                    android:layout_margin="20dp"
+                    />
 
                 <ImageView
                     android:id="@+id/logoutUser"
                     android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_height="25dp"
                     android:src="@drawable/logout"
                     android:layout_alignParentEnd="true"
                     android:layout_margin="20dp"/>
