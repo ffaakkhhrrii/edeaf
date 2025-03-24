@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".profile.FragmentSetProfile"
+    tools:context=".ui.profile.SetProfileFragment"
     android:background="#EFF9FF">
 
     <LinearLayout
@@ -47,18 +47,6 @@
         android:layout_marginTop="40dp"
         android:layout_gravity="center"
         android:src="@drawable/user_profile_nulll"/>
-
-    <TextView
-        android:id="@+id/changeImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="17dp"
-        android:text="Change Photo"
-        android:fontFamily="@font/poppins_medium"
-        android:textStyle="bold"
-        android:textSize="16dp"
-        android:textColor="#000000"/>
 
     <TextView
         android:layout_width="wrap_content"

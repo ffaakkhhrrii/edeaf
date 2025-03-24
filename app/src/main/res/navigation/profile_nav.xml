@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/userProfilePage"
-        android:name="com.example.edeaf.profile.FragmentUserProfile"
+        android:name="com.example.edeaf.ui.profile.UserProfileFragment"
         android:label="fragment_user_profile_page"
         tools:layout="@layout/fragment_user_profile_page" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/setProfilePage"
-        android:name="com.example.edeaf.profile.FragmentSetProfile"
+        android:name="com.example.edeaf.ui.profile.SetProfileFragment"
         android:label="fragment_set_profile_page"
         tools:layout="@layout/fragment_set_profile_page" >
         <argument
@@ -31,10 +31,6 @@
         <argument
             android:name="uid"
             app:argType="string" />
-        <argument
-            android:name="imageUri"
-            app:argType="string"
-            app:nullable="true" />
         <action
             android:id="@+id/action_setProfilePage_to_userProfilePage"
             app:destination="@id/userProfilePage" />
@@ -47,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/changePasswordPage"
-        android:name="com.example.edeaf.profile.FragmentChangePassword"
+        android:name="com.example.edeaf.ui.profile.FragmentChangePassword"
         android:label="fragment_change_password_page"
         tools:layout="@layout/fragment_change_password_page" />
 </navigation>

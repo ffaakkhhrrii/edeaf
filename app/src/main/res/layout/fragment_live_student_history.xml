@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".livetrans.LiveStudentHistory"
+    tools:context=".ui.livetrans.LiveStudentHistory"
     android:orientation="vertical"
     android:background="#E3E7E8">
 

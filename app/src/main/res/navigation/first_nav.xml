@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginPage"
-        android:name="com.example.edeaf.login.LoginPage"
+        android:name="com.example.edeaf.ui.login.LoginFragment"
         android:label="fragment_login_page"
         tools:layout="@layout/fragment_login_page">
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUp"
-        android:name="com.example.edeaf.signup.FragmentSignUp"
+        android:name="com.example.edeaf.ui.signup.SignupFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/homePage"
-        android:name="com.example.edeaf.home.FragmentHomePage"
+        android:name="com.example.edeaf.ui.home.FragmentMenuContainer"
         android:label="fragment_home_page"
         tools:layout="@layout/fragment_home_page" >
         <argument

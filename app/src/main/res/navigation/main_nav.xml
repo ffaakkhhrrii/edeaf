@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.edeaf.home.FragmentHome"
+        android:name="com.example.edeaf.ui.home.FragmentHome"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/liveTranslationTeacher"
-        android:name="com.example.edeaf.livetrans.LiveTranslationTeacher"
+        android:name="com.example.edeaf.ui.livetrans.LiveTranslationTeacher"
         android:label="fragment_live_translation_teacher"
         tools:layout="@layout/fragment_live_translation_teacher" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/liveTranslationStudent"
-        android:name="com.example.edeaf.livetrans.LiveTranslationStudent"
+        android:name="com.example.edeaf.ui.livetrans.LiveTranslationStudent"
         android:label="fragment_live_translation_student"
         tools:layout="@layout/fragment_live_translation_student" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/liveTeacherRoom"
-        android:name="com.example.edeaf.livetrans.LiveTeacherRoom"
+        android:name="com.example.edeaf.ui.livetrans.LiveTeacherRoom"
         android:label="fragment_live_teacher_room"
         tools:layout="@layout/fragment_live_teacher_room" >
         <argument
@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/liveStudentRoom"
-        android:name="com.example.edeaf.livetrans.LiveStudentRoom"
+        android:name="com.example.edeaf.ui.livetrans.LiveStudentRoom"
         android:label="fragment_live_student_room"
         tools:layout="@layout/fragment_live_student_room" >
         <argument
@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/liveStudentHistory"
-        android:name="com.example.edeaf.livetrans.LiveStudentHistory"
+        android:name="com.example.edeaf.ui.livetrans.LiveStudentHistory"
         android:label="fragment_live_student_history"
         tools:layout="@layout/fragment_live_student_history" >
         <argument
@@ -82,12 +82,12 @@
     </fragment>
     <fragment
         android:id="@+id/userProfile"
-        android:name="com.example.edeaf.profile.FragmentUserProfileHost"
+        android:name="com.example.edeaf.ui.profile.FragmentUserProfileHost"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" />
     <fragment
         android:id="@+id/dictionaryPage"
-        android:name="com.example.edeaf.dictionary.FragmentDictionaryPage"
+        android:name="com.example.edeaf.ui.dictionary.DictionaryFragment"
         android:label="fragment_dictionary_page"
         tools:layout="@layout/fragment_dictionary_page" >
         <argument

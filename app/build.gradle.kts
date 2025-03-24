@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
     id ("androidx.navigation.safeargs")
+    id ("kotlin-kapt")
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
@@ -59,4 +61,16 @@ dependencies {
 
     implementation("androidx.cardview:cardview:1.0.0")
     implementation ("com.squareup.picasso:picasso:2.8")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+
+    implementation ("com.google.dagger:hilt-android:2.51.1")
+    kapt ("com.google.dagger:hilt-compiler:2.51.1")
+
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.1")
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes =  true
 }

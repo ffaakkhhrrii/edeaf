@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EFF9FF"
-    tools:context=".home.FragmentHome">
+    tools:context=".ui.home.FragmentHome">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,14 +47,6 @@
                     android:textSize="20sp" />
 
             </LinearLayout>
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imgUser"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_gravity="center_vertical|end"
-                android:padding="10dp"
-                app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
 
         </LinearLayout>
 
