@@ -1,5 +1,7 @@
 # What is Edeaf? 
-![slide 3 - solution   inovation](https://github.com/ffaakkhhrrii/edeaf/assets/92128638/b6240a58-5eb3-4f26-a873-385e2ae204ee)
+
+![edeaf](https://github.com/user-attachments/assets/05d29cb4-cb80-4efa-975e-65f66458e5b0)
+
 EDEAF is an application that designed to assist the deaf students in their learning process, incorporating various engaging features to make the application smart, easy, and fun to use. EDEAF is designed by leveraging technological advancements with an accuracy of up to 
 99%. It is packaged in a simple application interface while still considering the usability of expected features, aiming to create a modern, efficient, functional, advanced, and user friendly technological tool tailored for deaf children. <b> We used this application idea for the hackathon competition held by Pijar Camp ID, and succeeded in winning first place.</b>
 
